@@ -1,0 +1,370 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+  color: #fff;
+  background-color: #dfc29a;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  border: 2px solid #ae9779;
+}
+
+th {
+  width: 900px;
+  height: 25px;
+}
+
+td {
+  width: 900px;
+  height: 150px;
+  padding: 1rem 1rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+li {
+  float: left;
+  margin-right: 20px;
+}
+
+/* header */
+.header {
+  display: fixed;
+  top: 0;
+  left: 0;
+}
+
+.headerWapper {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #c5aa87;
+}
+
+.headerLine {
+  width: 70rem;
+  margin-left: 1rem;
+  display: flex;
+  border-bottom: 1px solid #c5aa87;
+}
+
+.header nav {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+/* YJInformation */
+.YJInformation {
+  width: 100%;
+  height: 390px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.YJInformation .selfImg {
+  width: 35rem;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-left: -2rem;
+}
+
+.YJInformation .selfImg img {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.YJInformation .LeftInformation {
+  width: 65rem;
+  height: 100%;
+  margin-left: -5rem;
+}
+
+.YJInformation .LeftInformation .YJIndividualInformation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.YJInformation .LeftInformation .YJIndividualInformation .gender {
+  flex-wrap: wrap;
+  text-align: center;
+  font-size: 30px;
+  margin-right: 5rem;
+  font-weight: 600;
+}
+
+.YJInformation .LeftInformation .YJIndividualInformation .birth {
+  text-align: center;
+  font-size: 30px;
+  margin-right: 5rem;
+  font-weight: 600;
+}
+
+.YJInformation .LeftInformation .YJIndividualInformation .residence {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.telInformation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  width: 100%;
+  height: 2.5rem;
+  font-size: 30px;
+}
+
+.telInformation div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 100%;
+  border-radius: 3px;
+  margin-right: 1rem;
+  background-color: #c5aa86;
+  color: white;
+}
+
+.telInformation i {
+  color: #c5aa86;
+}
+
+.emailInformation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  width: 100%;
+  height: 2.5rem;
+  font-size: 30px;
+}
+
+.emailInformation div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 100%;
+  border-radius: 3px;
+  margin-right: 1rem;
+  background-color: #c5aa86;
+  color: white;
+}
+
+.emailInformation i {
+  color: #c5aa86;
+}
+
+/* underSection */
+
+.underSection {
+  width: 100%;
+  height: 100%;
+  padding: 2rem 0;
+  background: linear-gradient(to top, #f5f1e5, #8a9e8b);
+}
+
+.underSection .mainHeading {
+  color: white;
+  margin-bottom: 2rem;
+  margin-left: 4rem;
+}
+
+.underSection .mainHeading span {
+  font-size: 40px;
+}
+
+/* common */
+
+.vLine {
+  border-left: 2px solid white;
+  height: 20px;
+}
+
+.underSectionHead {
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  color: white;
+}
+
+.underSectionHead .underSectionHeading {
+  width: 25rem;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: #ae9779;
+  border-radius: 4px;
+}
+
+.underSectionHead .underSectionHeading i {
+  font-size: 33px;
+  margin-right: 7px;
+  margin-left: 2rem;
+}
+
+.underSectionHead .underSectionHeading span {
+  font-size: 23px;
+  margin-right: 7px;
+  margin-top: 3px;
+}
+
+.underSectionHead .headingIcon {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-right: 1rem;
+  color: white;
+}
+
+.underSectionHead .headingIcon i {
+  padding: 0 0.5rem;
+}
+
+/* Self Introducations */
+
+.SelfIntroducations {
+  width: 100%;
+  height: 11.3rem;
+}
+
+.SelfIntroducationsP {
+  width: 100%;
+  height: 6.5rem;
+  margin-top: 0.7rem;
+  padding-left: 5rem;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+/* project */
+
+.project1 {
+  margin-bottom: 1rem;
+}
+
+.project1 h1 {
+  padding: 1rem 4rem;
+}
+
+.project1 span {
+  display: block;
+  padding: 1rem 5rem;
+}
+
+.project1 div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project1 img {
+  padding: 1rem 0;
+  width: 22rem;
+}
+
+/* Allkit */
+
+.project2 {
+  margin-bottom: 1rem;
+}
+
+.project2 h1 {
+  padding: 1rem 4rem;
+}
+
+.project2 span {
+  display: block;
+  padding: 1rem 5rem;
+}
+
+.project2 div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project2 img {
+  margin: 1rem 0;
+  width: 22rem;
+  height: 15rem;
+}
+
+.award {
+  margin-bottom: 1rem;
+}
+
+.award h1 {
+  padding: 1rem 4rem;
+}
+
+.award div {
+  padding: 1rem 5rem;
+}
+
+/* Skills */
+
+.Skills {
+  width: 100%;
+  height: 17rem;
+}
+
+.SkillsLang h1 {
+  padding: 1rem 4rem;
+}
+
+.SkillsLang span {
+  padding: 1rem 5rem;
+  font-size: 20px;
+}
+
+/* Weekly Plan */
+.WeeklyPlan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80rem;
+  padding: 30px 0;
+}
+
+.WeeklyPlan table caption {
+  font-size: 3.5rem;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 30px;
+}

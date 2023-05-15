@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		let checkflag="false"; // global
+		
+		function checkForm() {
+			let list = document.myform.list;
+			console.log(list); // [input ..][input ...]
+			console.log(list.length);
+			
+			if(checkflag == "false") {
+				for (let index in list) { // point //javascript 배열의 첨자가 리턴된다.
+					console.log(list[index]);
+					list[index].checked=true;
+				}
+				checkflag = "true";
+				return "[선택해제하기]"
+			} else {
+				for (let index in list) { // point //javascript 배열의 첨자가 리턴된다.
+					console.log(list[index]);
+					list[index].checked=false;
+				}
+				checkflag = "false";
+				return "[전체선택하기]"
+			}
+		}
+		
+		function checkForm2(list) {
+			console.log(list);
+			return "....";
+		}
+	</script>
+</head>
+<body>
+	<form action="" name="myform"> <!-- 이름이 같으면 list로 사용 가능 -->
+		좋아하는 과목은 : <br> 
+		<input type="checkbox" name="list" value="java">JAVA<br>
+		<input type="checkbox" name="list" value="oracle">ORACLE<br>
+		<input type="checkbox" name="list" value="html">HTML<br>
+		<input type="checkbox" name="list" value="css">CSS<br> 
+		<input type="checkbox" name="list" value="script">SCRIPT<br> 
+		<input type="button" value="[전체선택]" onclick="this.value=checkForm()"><br>
+		<br> <input type="button" value="[전체선택]" 	onclick="this.value=checkForm2(this.form.list)"><br>
+	</form>
+</body>
+</html>

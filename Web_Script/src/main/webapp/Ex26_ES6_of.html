@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>JavaScript For Of Loop</h2>
+    <p>The for of statement loops through the values of any iterable object:</p>
+
+    <p id="demo"></p>
+
+    <script>
+        const cars = ["BMW", "Volvo", "Mini"];
+
+        let text = "";
+        for (let index in cars) {
+            console.log(cars[index]);
+        }
+        for (let value of cars) { // 값을 받을 수 있음 
+            text += value + "<br>";
+        }
+
+        document.getElementById("demo").innerHTML = text;
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            let myphotos = ["images/1.jpeg", "images/2.jpeg", "images/3.jpeg", "images/4.jpeg"];
+            let index = 0;
+
+            document.getElementById("next").addEventListener("click", function () {
+                if (++index == myphotos.length - 1) {
+                    index = 0;
+                }
+                document.getElementById("imgs").setAttribute("src", myphotos[index]);
+            });
+
+            document.getElementById("prv").addEventListener("click", function () {
+                if (--index < 0) {
+                    index = myphotos.length - 1;
+                }
+                document.getElementById("imgs").setAttribute("src", myphotos[index]);
+            });
+
+            //문제 
+            /*
+            a click 이벤트를 동적으로 부여하시고 (addEvent...)
+            다음 >> images/2.jpg   다음 >> images/3.jpg   다음 >> images/4.jpg  다음 >> images/1.jpg
+            이전 >> images/4.jpg   이전 >> images/3.jpg
+            */
+        }
+    </script>
+</head>
+
+<body>
+    <h3>DOM 슬라이드</h3>
+    <img src="images/1.jpeg" alt="이미지" id="imgs" width="200" height="200">
+    <hr>
+    <a href="#" id="prv">이전</a>||<a href="#" id="next">다음</a>
+</body>
+
+</html>

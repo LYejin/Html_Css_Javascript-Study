@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        /*
+        https://www.w3schools.com/jsref/obj_event.asp
+
+        JAVA)
+        예외처리
+        try {
+            0/0 >> 예외가 발생 >> 예외에 맞는 객체가 자동 생성 new Div ... >> 객체 예외 메시지 정보 담겨서
+        } catch (Exception e) { // e라는 생성된 예외 객체의 주소를 받는다.
+            예외에 정보를 확인 ...
+        }
+
+        javaScript >> 사건이 발생 (click, mouseover, mouseout) >> 내부적으로 event 정보를 담고 있는 객체 생성 ^^
+        Event 객체라는 이 녀석은 >> 사건의 진실 >> (사건발생, 주체, 영향 ... 정보)
+        자동으로 생성된 event 객체의 주소를 받아서 쓰고 싶어요 ^^
+
+        window.event.메서드
+        window.event.속성
+
+        KEY POINT : Event 객체가 가지는 메소드, 속성을 활용하기
+        */
+        window.onload = function () {
+            let btn = document.getElementById("mybtn");
+            btn.onclick = function (e) { //e변수가 event 객체의 주소 전달 받음
+                console.log("e.type"); // Event 객체가 가지는 속성 >> 어떤 이벤트가 발생했는지 >> 종류 판단
+                console.log("e.target"); // <span>눌러봐</span>
+                console.log("e.currentTarget"); // <button id="mybtn"><span>눌러봐</span></button>
+                console.log("e.x");
+                console.log("e.y");
+                // 간단하게 설명하면 target은 이벤트가 발생한 바로 그 요소를 직접 가리키고
+                // currentTarget은 이벤트 리스너(EventListener)를 가진 요소를 가리킵니다.
+            }
+            let btn2 = document.getElementById("mybtn2");
+            let handler = function (event) {
+                switch (event.type) {
+                    case "click": alert("클릭");
+                        break;
+                    case "mouseover": event.target.style.backgroundColor = "red";
+                        break;
+                    case "mouseout": event.target.style.backgroundColor = "blue";
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            btn2.onclick = handler;
+            btn2.onmouseover = handler;
+            btn2.onmouseout = handler;
+            /*
+            btn2.onclick = function(event) {}; // 함수의 주소
+            btn2.onmouseover = function(event) {}; // 함수의 주소
+            btn2.onmouseout = function(event) {}; // 함수의 주소
+            */
+        }
+    </script>
+</head>
+
+<body>
+    <button id="mybtn"><span>눌러봐</span></button>
+    <br>
+    <button id="mybtn2">눌러봐2</button>
+</body>
+
+</html>

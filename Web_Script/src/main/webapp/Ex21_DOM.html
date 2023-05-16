@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
 	<ul id="mylist">
 		<li>coffee</li>
 		<li>tea</li>
-		<li>milk</li>	
+		<li>milk</li>
 	</ul>
 	<button onclick="myFunc()">클릭</button>
 	<button onclick="myFunc2()">클릭2</button>
@@ -20,11 +22,11 @@
 		list.removeChild(list.childNodes[0]);
 		//<ul> li, li, li, ... 내부적으로 배열
 		//select > option , option , .....
-		
+
 		// java 동적 배열 : ArrayList 성질과 같다 .... [0][1][2] *****
-		
+
 	}
-	
+
 	function myFunc2() {
 		let textnode = document.createTextNode("water");
 		let item = document.getElementById("mylist").childNodes[0];
@@ -34,4 +36,5 @@
 		//coffee content를 water replace
 	}
 </script>
+
 </html>

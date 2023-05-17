@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화살표 함수(줄임표현식)</title>
+</head>
+
+<body>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+</body>
+<script>
+    // https://www.w3schools.com/js/js_arrow_function.asp
+    // 일반함수 function foo() {}
+    /*
+        함수를 선언하는 6가지 방법
+        1. named function declaration (명명 함수 선언)
+        function hello() {
+        // ...
+        }
+        가장 대중적인 방법이다. 함수의 이름이 hello가 된다. 이미 여러차례 싸질러 놨듯, 호이스팅 되기 때문에 이 함수는 어느 스코프에서든 호출 할 수 있는 함수가 된다.
+
+        2. anonymous function expression (익명 함수 표현) *********
+        var hello = function () {
+        //...
+        }
+        이름이 없는 함수를 변수에 담은 방식이다. 이름이 없는 함수긴 한데, 자바스크립트 엔진이 이름을 변수명으로 추정하여 넣는다.
+
+        var hello = function () {
+        //...
+        }
+
+        hello.name
+
+        //  > "hello"
+        hello
+
+        // > ƒ () {
+        //   //...
+        // }
+        변수 할당은 호이스팅 되지 않으므로, 할당 된 이후에만 실행 가능하다.
+
+        3. named function expression (명명 함수 표현)
+        var hello = function originalName() {
+        // ...
+        }
+        2와 거의 동일하다. 다른 점은 함수 이름이 명확하게 선언되어 있으므로 JS 엔진에 의해 추론되지 않는 다는 것이다.
+
+        4. Immediately-invoked expression (즉시 실행 표현) *********
+        var hello = (function () {
+        //...
+        })()
+        즉시 실행 함수로, 클로져를 활용할 수 있다. 내부 함수는 변수나 다른 함수등을 쓸 수 있지만,이 함수 밖에서는 완전히 캡슐화되어 접근 할 수 없다. 가장 흔해 빠진 예제 중 하나로는 카운터가 있다.
+
+        var myCounter = (function (initialValue = 0) {
+        let count = initialValue
+        return function () {
+        count++
+        return count
+        }
+        })(1)
+
+        myCounter() // 2
+        myCounter() // 3
+        myCounter() // 4
+        외부 함수에서 넘겨준 1을 가지고, 내부에서 처리를 하여 리턴하고 있다.
+
+        5. function constructor
+        var hello = new Function()
+        아마도 이런식으로 함수를 쓸일은 거의 없을 것이다.
+
+        const adder = new Function('a', 'b', 'return a + b')
+        adder(2, 6)
+        // 8
+        이는 eval()을 사용하는 것과 같기 때문에 굉장히 위험하다. 그리고 이 생성자는 전역 범위로 한정된 함수만 생성할 수 있다.
+
+        6. arrow function (화살표 함수) *********
+        var hello = () => {
+        //...
+        }
+    */
+
+    //익명 함수
+    let foo = function () {
+        console.log("foo ....");
+    }
+    //실행 함수
+    foo();
+
+    //ES6 (2015) 함수의 줄임 표현 ... Arrow Function 이름으로
+    let bar = () => console.log("bar ...");
+    bar();
+
+    // 매개변수 1개 return 함수
+    // let foo2 = function (x) {return x;};
+    let foo2 = (x) => x;
+    let data = foo2(100);
+    console.log(data);
+
+    let hello;
+    hello = function (val) { return "hello" + val };
+    hello = (val) => "hello" + val;
+    hello = val => "hello" + val;
+    let v = hello("aaaa");
+    console.log(v);
+    document.getElementById("demo").innerHTML = hello("방가방가");
+
+    // 매개변수 2개 이상인 경우
+    // function call (a,b) or functioncall(a,b,c,d)
+    //let foo3 = (a, b) => { return a + b; };
+    let foo3 = (a, b) => a + b;
+    let v2 = foo3(10, 20);
+    console.log(v2);
+
+    // 만약에 함수안에 여러개의 논리가 필요하다면 (if, case ...) {구현}
+    let foo4 = (a, b) => { let c = 100; return a + b + c; };
+    let v3 = foo4(100, 100);
+    console.log(v3);
+
+    //응용
+    //객체 반환시
+    //함수 객체 return >> json
+    let foo5 = () => ({ a: 1, b: 2, c: 3 });
+    let vobj = foo5();
+    console.log(vobj);
+
+    //즉시 실행 함수 (암기)
+    (
+        function () {
+            console.log("즉시 실행 함수");
+            //원칙적으로 함수는 호출에 의해서
+        }()
+    );
+    //위 코드를 화살표 표현식으로 바꾸세요 (예외적으로 기억 하면 ^^)
+    (
+        () => { console.log("화살표 즉시 실행 함수") }
+    )();
+
+
+    // Arrays 가 가지고 있는 다양한 함수 활용하기
+    //https://www.w3schools.com/jsref/jsref_obj_array.asp
+
+
+    /*
+        암기(초급자)
+        1. for (let i = 0; i <10; i++) {}
+        2. for (let index in Array) {Array[index]}
+        3. for (let value of Array) {value}
+
+        객체 (JSON)
+        객체를 for으로 사용가능 POINT
+        JSON {a:1, b:2, c:3}
+        1. for (let key in Object) {객체[key]} >> 객체["a"] >> 1
+        2. let obj = {a:1} >> obj.a >> 1
+
+        추가적으로
+        Array.isArray()
+        1. Array.forEach(function(value, index, array) {})
+        2. Array.map()
+    */
+    // <p id="demo2"></p>
+    function myFunc() {
+        const data = ["A", "B", "C", "D"];
+        let x = document.getElementById("demo2");
+        x.innerHTML = Array.isArray(data); // 너 배열 맞니? (검증, true, false)
+    }
+
+    myFunc(); // 함수 호출
+
+    let txt = "";
+    const numbers = [45, 5, 8, 16, 25];
+    // Array.forEach(function(value, index, array) {})
+    // 니가 가지고 있는 배열의 개수 만큼 함수를 호출할거야 (parameter 값을 전달해 줄게 잘 써먹어 봐 ...)
+    function myFunc2(value, index, array) {
+        txt = "(" + value + ")" + "[" + index + "]" + "[" + array + "]";
+        console.log(txt);
+    }
+    numbers.forEach(myFunc2); // callback 배열 개수 만큼 자동 호출
+    // forEach => 값만 리턴
+    // map => 배열을 만들어 리턴
+
+    const numbers2 = [65, 44, 12, 4];
+    const newArr = numbers2.map(myFunction);
+
+    document.getElementById("demo").innerHTML = newArr;
+
+    function myFunction(value, index, array) {
+        return value * 10 + index;
+    }
+    console.log(newArr);
+
+    //응용하기
+    //// 화살표 함수 Array 혼합해서
+    let evens = [2, 4, 6, 8];
+    let odds = evens.map((value) => value + 1);
+    console.log(odds);
+
+    let nums = evens.map(function (value, index) { return value + index; });
+    let numss = evens.map((value, index) => value + index);
+    console.log(numss);
+
+    let arr = [];
+    evens.forEach(value => {
+        if (value % 2 === 0) {
+            arr.push(value);
+        }
+    });
+    console.log(arr);
+</script>
+
+</html>

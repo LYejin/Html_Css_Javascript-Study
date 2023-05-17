@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</head>
+<!-- 이벤트 걸어주고 클릭된 것의 데이터를 불러와서 보여주는 방식 -->
+
+<body>
+    <script type="text/JavaScript">
+        function formatNumber(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function getLocation(row) {
+        //var row = data.data;
+        var loactions = [];
+
+        for (var index in row) {
+            var loaction = row[index].시도;
+
+            if (loactions.indexOf(loaction) < 0) {
+                if (loactions.length == 0) {
+                    var option = document.createElement("option");
+                    option.innerHTML = "선택해주세요";
+                    option.setAttribute("value", "선택해주세요");
+                    document.getElementById("sel").appendChild(option);
+                }
+                var option = document.createElement("option");
+                option.innerHTML = loaction;
+                option.setAttribute("value", loaction);
+                document.getElementById("sel").appendChild(option);
+                loactions.push(loaction);
+            }
+        }
+    }
+
+    function getType(row) {
+        //var row = data.data;
+        var types = [];
+
+        for (var index in row) {
+            var type = row[index].시도;
+
+            if (types.indexOf(loaction) < 0) {
+                if (types.length == 0) {
+                    var option = document.createElement("option");
+                    option.innerHTML = "선택해주세요";
+                    option.setAttribute("value", "선택해주세요");
+                    document.getElementById("sel").appendChild(option);
+                }
+                var option = document.createElement("option");
+                option.innerHTML = type;
+                option.setAttribute("value", type);
+                document.getElementById("sel").appendChild(option);
+                types.push(type);
+            }
+        }
+    }
+
+    window.onload = function () {
+        fetch("./Ex49_JSON.json")
+        .then((res) => {
+        return res.json()
+        })
+        .then((obj) => {
+            List(obj.data);
+        })
+
+        List = (data) => {
+            console.log(data);
+            console.log(data.data.시도)
+            getLocation(data.data);
+            getType(data.data.시도);
+
+            document.getElementById("sel").onchange = function () {
+                var control = document.getElementById("sel");
+                chagenTable(control.options[control.selectedIndex].value);
+            }
+
+            var tableName = "testTable";
+            function chagenTable(location) {
+                if (document.getElementById(tableName) != null) {
+                    document.getElementById(tableName).remove();
+                }
+
+                var row = data.data;
+                var target = [];
+                for (var index in row) {
+                    if (row[index].시도 === location)
+                        target.push(row[index]);
+                }
+                var headers = ["명세서건수", "보험자부담금", "진료과목", "환자수"];
+                var table = document.createElement("table"); //<table id=""></table>
+                table.setAttribute("id", tableName);
+                table.setAttribute("class", "table table-hover");
+                for (var i = 0; i < target.length; i++) {
+                    var tr = document.createElement("tr");
+                    var innerEle = "";
+                    var text = "";
+                    if (i === 0) {
+                        tr.setAttribute("class", "table-primary");
+                        innerEle = "th";
+                        for (var j = 0; j < headers.length; j++) {
+                            var td = document.createElement(innerEle);
+                            td.innerHTML = headers[j];
+                            tr.appendChild(td);
+                        }
+                        table.appendChild(tr);
+                        document.body.appendChild(table);
+                        tr = document.createElement("tr");
+                    }
+                    innerEle = "td";
+                    var td1 = document.createElement(innerEle);
+                    td1.innerHTML = target[i].명세서건수;
+                    tr.appendChild(td1);
+
+                    var td2 = document.createElement(innerEle);
+                    td2.innerHTML = target[i].진료과목;
+                    tr.appendChild(td2);
+
+
+                    var td4 = document.createElement(innerEle);
+                    td4.innerHTML = target[i].환자수;
+                    tr.appendChild(td4);
+
+
+                    table.appendChild(tr);
+                }
+                document.body.appendChild(table);
+            }
+        }
+        
+    };
+        
+
+    </script>
+    <div class="dropdown">
+        <button class="btn btn-primary btn-lg dropdown-toggle w-100 h-50" type="button" data-toggle="dropdown"
+            id="dropdownBtn">
+            전국 진료과목별 진료비 통계
+        </button>
+        <select class="dropdown-menu w-100 text-center" id="sel">
+            <!-- <a class="dropdown-item" role="button" href="#">서울</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">부산</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">인천</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">대구</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">광주</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">대전</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">울산</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">경기</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">강원</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">충북</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">충남</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">전북</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">전남</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">경북</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">경남</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">제주</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" role="button" href="#">세종</a>
+            <div class="dropdown-divider"></div> -->
+        </select>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.each(["A","B"],function(index, element){
+					console.log(index + " / " + element);
+				});
+				
+				$.each(["A","B"],(index, element) => console.log(index + " / " + element));
+
+				$.each(["A","B"],() => console.log($(this)));
+				
+				$('p').each(function(index,element){
+					console.log(element);
+				});
+				
+				// ArrowFunction(화살표 함수)은 '함수 스코프'를 생성합니다. 다만, 실행 컨텍스트 생성시 this를 바인딩하지 않습니다.
+				// 안돼요...(this 안돼요)
+				$('p').each((index, element)=>console.log("this : " + $(element).text()));
+			});
+		</script>
+</head>
+<body>
+	<p>java</p>
+	<p>jsp</p>
+	<p>oracle</p>
+	<p>jquery</p>
+</body>
+</html>

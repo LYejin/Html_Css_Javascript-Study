@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        let xhr = null;
+        function getInstance() {
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else if (window.ActiveXObject) { //IE
+                console.log("IE");
+            } else {
+                throw new Error("Ajax 비동기 지원하지 않아요");
+            }
+            return xhr;
+        }
+
+        function handlerStateChange() {
+            if (xhr.readyState == 4) { //서버에서 응답이 왔다면
+                if (xhr.status >= 200 && xhr.status < 300) { //응답이 성공적이라면
+                    //서버가 클라이언트에게 전달한 (응답한) 데이터 형식
+                    //1. Text(html,txt,css,json)  2. xml
+                    const response = JSON.parse(xhr.responseText);
+                    const id = document.getElementById("idInput").value;
+                    const targetObj = response.find(obj => obj.id === Number(id));
+                    if (targetObj) {
+                        document.getElementById("result").innerHTML = JSON.stringify(targetObj);
+                    } else {
+                        document.getElementById("result").innerHTML = "해당 ID의 객체를 찾을 수 없습니다.";
+                    }
+                } else {
+                    console.log("비정상 응답 : " + xhr.status);
+                }
+            }
+        }
+
+        function sendData() {
+            xhr = getInstance();
+            xhr.onreadystatechange = handlerStateChange;
+            xhr.open("GET", "https://jsonplaceholder.typicode.com/posts");
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+	<input type="text" id="idInput" placeholder="ID 입력" />
+	<button onclick="sendData()">비동기 요청</button>
+	<div id="result"></div>
+</body>
+</html>

@@ -22,14 +22,13 @@ Command방식(parameter 업무 파악) 파라미터로 페이지 지정
 @WebServlet("site.do")
 http://192.168.0.46:8090/WebSite/site.do?cmd=list
 http://192.168.0.46:8090/WebSite/site.do?cmd=write
-
 */
 import kr.or.kosa.dto.RegisterDto;
 
 @WebServlet("*.do")
 public class FrontRegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
     public FrontRegisterController() {
         super();
     }
@@ -41,7 +40,6 @@ public class FrontRegisterController extends HttpServlet {
 		String cd = request.getParameter("cmd");
 		//3.요청 판단하기 ... 판단에 따른 서비스 실행
 	  	response.setContentType("text/html;charset=UTF-8"); //클라언트에게 전달한 페이지의 정보 구성 / 응답할 페이지의 기본정보
-	  	PrintWriter out = response.getWriter();
 	
 	  	String viewpage = null;
 		

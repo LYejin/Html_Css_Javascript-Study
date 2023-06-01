@@ -32,7 +32,6 @@ public class NowServlet extends HttpServlet {
     public NowServlet() {
         super();
         System.out.println("생성자 > 객체 생성시 한번 호출");
-        
     }
 
 	

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*
+		jQuery.post(url [, data ] [, success ] [, dataType ])
+		>> xmlHttpRequest >> xhr.open("POST","") 동일
+		
+		// bad한 방법
+		  $.post("Ex03_Server.jsp?name=hong&pwd=1004")
+		
+		// 보통
+		  const name = $('#name').val();
+		  const pwd  = $('#pwd').val();
+		  const param = "name="+name+"&pwd="+pwd
+		  $.post("Ex03_Server.jsp", param);
+		
+		// good한 방법 (parameter json 객체) ******
+		  const data = {"name":$('#name').val(),"pwd":$('#pwd').val()} 
+		  $.post("Ex03_Server.jsp", data);
+		  $.post("Ex03_Server.jsp", {"name":$('#name').val(),"pwd":$('#pwd').val()} );
+		*/
+		$(function() {
+			$('#btn').click(function(){
+				const data = {"name":$('#name').val(),"pwd":$('#pwd').val()};
+				$.post("Ex03_Server.jsp",data, function(responsetext){ // 응답이 왔고 그게 정상건이라면 자동 호출되는 callback
+					$('#message').html(responsetext);
+				});
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	이름:<input type="text" id="name">
+	비번:<input type="text" id="pwd">
+	<input type="button" id="btn" value="비동기 전송"><br>
+	<div id="message"></div>
+</body>
+</html>
